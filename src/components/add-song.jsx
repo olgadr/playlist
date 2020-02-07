@@ -6,10 +6,10 @@ import '../styles/add-song.scss';
 function AddSong({ dispatch, songsList }) {
     const songIndex = songsList ? songsList.length : 0;
     const inputRef = useRef(null);
-    
+
     const onSongAdded = () => {
-        const songUrl = inputRef.current.value;
-        if (songUrl) {
+        const songUrl = inputRef.current.value.toString();
+        if (songUrl) {           
             dispatch(addSong({ url: songUrl, id: songIndex }));
             inputRef.current.value = '';
         }
@@ -18,6 +18,7 @@ function AddSong({ dispatch, songsList }) {
     return (
         <div className="add-song">
             <input
+                data-testid="text-input"
                 type="text"
                 placeholder="Enter Video URL"
                 defaultValue=''
@@ -28,7 +29,12 @@ function AddSong({ dispatch, songsList }) {
                     }
                 }}
             />
-            <button onClick={onSongAdded}>Add</button>
+            <button
+                data-testid="button-add"
+                onClick={onSongAdded}
+            >
+                Add
+            </button>
         </div>
     )
 }

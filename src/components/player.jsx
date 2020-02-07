@@ -21,6 +21,7 @@ function Player({ currentIndex, songs, dispatch }) {
   return (
     song &&    
     <ReactPlayer
+      data-testid="react-player"
       url={song.url}
       controls
       playing
