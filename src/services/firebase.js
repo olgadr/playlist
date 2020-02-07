@@ -15,4 +15,3 @@ firebase.initializeApp(firebaseConfig);
 // Get a reference to the database service
 export const database = firebase.database();
 export const songsRef = database.ref('/songs');
-export const currentRef = database.ref(`/current`);

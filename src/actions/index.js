@@ -21,7 +21,7 @@ export const removeSong = (songId) => async dispatch => {
     itemRef.remove();
 }
 
-export const fetchSongs = () => async dispatch => {
+export const fetchSongs = () => async dispatch => {   
     songsRef.on("value", function (snapshot) {
         const data = snapshot.val();
         dispatch({

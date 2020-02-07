@@ -4,22 +4,8 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { render, getByTestId, queryByTestId, fireEvent } from '@testing-library/react';
 import AddSong from '../components/add-song';
-import * as actions from "../actions";
-
-const songsList = [
-  {
-    "id": "1",
-    "url": "http://y2u.be/alHX1fJ9I-w"
-  },
-  {
-    "id": "2",
-    "url": "http://y2u.be/hkn-JAiCz2A"
-  },
-  {
-    "id": "3",
-    "url": "http://y2u.be/8aGhZQkoFbQ"
-  }
-];
+import * as actions from '../actions';
+import { songsList } from './songs';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

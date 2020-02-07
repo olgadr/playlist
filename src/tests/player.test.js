@@ -4,6 +4,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { render, getByTestId, queryByTestId } from '@testing-library/react';
 import Player from '../components/player';
+import { songsList } from './songs';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -21,20 +22,7 @@ test('renders empty', () => {
 
 test('renders player with current url', () => {
   store = mockStore({
-    songs: [
-      {
-        "id": "1",
-        "url": "alHX1fJ9I-w"
-      },
-      {
-        "id": "2",
-        "url": "hkn-JAiCz2A"
-      },
-      {
-        "id": "3",
-        "url": "8aGhZQkoFbQ"
-      }
-    ],
+    songs: songsList,
     currentIndex: 1
   });
 

@@ -4,6 +4,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { render, getByTestId } from '@testing-library/react';
 import Playlist from '../components/playlist';
+import { songsList } from './songs';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -22,20 +23,7 @@ test('renders empty list', () => {
 
 test('renders list with 3 songs and current index equals 1', () => {
   store = mockStore({
-    songs: [
-      {
-        "id": "1",
-        "url": "alHX1fJ9I-w"
-      },
-      {
-        "id": "2",
-        "url": "hkn-JAiCz2A"
-      },
-      {
-        "id": "3",
-        "url": "8aGhZQkoFbQ"
-      }
-    ],
+    songs: songsList,
     currentIndex: 1
   });
 
@@ -45,6 +33,6 @@ test('renders list with 3 songs and current index equals 1', () => {
 
   const currentRow = getByTestId(container, 'current-row');
   expect(currentRow.childNodes.length).toEqual(2);
-  expect(currentRow.childNodes[0].textContent).toEqual("hkn-JAiCz2A");
+  expect(currentRow.childNodes[0].textContent).toEqual("http://y2u.be/hkn-JAiCz2A");
 });
 
