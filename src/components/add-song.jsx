@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { addSong } from '../actions';
 import { connect } from 'react-redux';
 import '../styles/add-song.scss';
 
-function AddSong({dispatch, songsList}) {
-    const [value, setValue] = useState('');
-    const id = songsList ? songsList.length : 0;
+function AddSong({ dispatch, songsList }) {
+    const songIndex = songsList ? songsList.length : 0;
+    const inputRef = useRef(null);
+    
+    const onSongAdded = () => {
+        const songUrl = inputRef.current.value;
+        if (songUrl) {
+            dispatch(addSong({ url: songUrl, id: songIndex }));
+            inputRef.current.value = '';
+        }
+    }
 
     return (
         <div className="add-song">
-            <input 
-                type="text" 
-                placeholder="Enter Video Id" 
-                value={value}
-                onChange={(event) => { setValue(event.target.value); }} 
+            <input
+                type="text"
+                placeholder="Enter Video URL"
+                defaultValue=''
+                ref={inputRef}
                 onKeyPress={(event) => {
                     if (event.charCode === 13) {
-                        dispatch(addSong({url: event.target.value, id}));
+                        onSongAdded();
                     }
-                    setValue('');
                 }}
             />
-            <button onClick={() => { 
-                dispatch(addSong({ url: value, id })); 
-                setValue('');
-            }}>Add</button>
+            <button onClick={onSongAdded}>Add</button>
         </div>
     )
 }

@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
-import { setCurrentIndex } from '../actions';
-import YouTube from 'react-youtube';
-
-const opts = {
-  height: '390',
-  width: '640',
-  playerVars: {
-    autoplay: 1
-  }
-};
+import { removeSong } from '../actions';
 
 function Player({ currentIndex, songs, dispatch }) {
   const [song, setSongItem] = useState(null);
@@ -20,19 +12,20 @@ function Player({ currentIndex, songs, dispatch }) {
       if (item && item.url) {
         setSongItem(item);
       }
+    } else {
+      setSongItem(null);
     }
 
   }, [currentIndex, songs]);
 
   return (
-    song &&
-    <YouTube
-      videoId={song.url}
-      opts={opts}
-      onEnd={() => {
-        if (currentIndex < songs.length - 1) {
-          dispatch(setCurrentIndex(currentIndex + 1))
-        }
+    song &&    
+    <ReactPlayer
+      url={song.url}
+      controls
+      playing
+      onEnded={() => {       
+        dispatch(removeSong(song.id))        
       }}
     />
   );
