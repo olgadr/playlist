@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0;
+    box-sizing: border-box;
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    #root {
+        display: flex;
+        justify-content: center;;
+    }
+}
+
+.app {
+     display: flex;
+     flex-direction: row; 
+     flex-basis: 1024px;       
+     
+     &-column {
+         flex: 1 1 auto;
+
+         &:first-child {           
+            margin-right: 50px;
+            border: solid 1px #566963;
+            padding: 10px;
+            flex: 0 0 300px;
+         }
+     } 
+
+     input[type="text"] {
+        flex: 1 1 auto;
+        border:1px solid #566963;
+        font-size:15px;
+        font-weight:normal;
+        outline: none;
+        text-indent: 10px;
+    }
+
+    button {
+        box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.55);     
+        background-color:#FFF;
+        border-radius:5px;
+        border:1px solid #566963;        
+        outline: none;
+        cursor:pointer;
+        color:#000;
+        font-family:Arial;
+        font-size:14px;
+        font-weight:normal;
+        padding:5px;        
+    }
+}
+

@@ -1,0 +1,2 @@
+export const FETCH_SONGS = 'FETCH_SONGS';
+export const SET_CURRENT_SONG_INDEX = 'SET_CURRENT_SONG_INDEX';

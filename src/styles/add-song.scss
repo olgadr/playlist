@@ -1,0 +1,9 @@
+.add-song {    
+    display: flex; 
+    max-width: 400px;
+    margin-bottom: 20px;   
+    
+    :first-child {
+        margin-right: 20px;
+    }
+}
