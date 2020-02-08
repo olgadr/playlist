@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
-import { addSong } from '../actions';
+import { handleAddSong } from '../services/firebase';
 import { connect } from 'react-redux';
 import '../styles/add-song.scss';
 
-function AddSong({ dispatch, songsList }) {
+function AddSong({ songsList }) {
     const songIndex = songsList ? songsList.length : 0;
     const inputRef = useRef(null);
 
     const onSongAdded = () => {
         const songUrl = inputRef.current.value.toString();
         if (songUrl) {           
-            dispatch(addSong({ url: songUrl, id: songIndex }));
+            handleAddSong({ url: songUrl, id: songIndex });
             inputRef.current.value = '';
         }
     }
@@ -40,8 +40,8 @@ function AddSong({ dispatch, songsList }) {
 }
 
 const mapStateToProps = (state) => {
-    const { currentIndex, songs } = state;
-    return { currentIndex, songsList: songs }
+    const { songs } = state;
+    return { songsList: songs }
 }
 
 export default connect(mapStateToProps)(AddSong);

@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { render, getByTestId, queryByTestId, fireEvent } from '@testing-library/react';
 import AddSong from '../components/add-song';
-import * as actions from '../actions';
+import * as firebaseService from '../services/firebase';
 import { songsList } from './songs';
 
 const middlewares = [thunk];
@@ -22,13 +22,13 @@ test('renders input and button elements', () => {
   expect(queryByTestId(container, 'button-add')).toBeTruthy();
 });
 
-test('when user clicks on the button, addSong action is called with the input value', () => {
+test('should call handleAddSong with the input value when user clicks on the button, ', () => {
   store = mockStore({
     songs: songsList,
     currentIndex: 1
   });
 
-  const addSong = jest.spyOn(actions, 'addSong');
+  const handleAddSong = jest.spyOn(firebaseService, 'handleAddSong');
   const songUrl = 'http://y2u.be/new';
   const songIndex = songsList ? songsList.length : 0;
 
@@ -48,7 +48,7 @@ test('when user clicks on the button, addSong action is called with the input va
     })
   ); 
 
-  expect(addSong).toHaveBeenCalled();
-  expect(addSong).toHaveBeenCalledWith({ url: songUrl, id: songIndex });
+  expect(handleAddSong).toHaveBeenCalled();
+  expect(handleAddSong).toHaveBeenCalledWith({ url: songUrl, id: songIndex });
 });
 

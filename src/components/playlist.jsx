@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchSongs, removeSong } from '../actions';
+import { fetchSongs } from '../actions';
+import { handleRemoveSong } from '../services/firebase';
 import '../styles/playlist.scss';
 
 function Playlist({ currentIndex, songsList, dispatch }) {
@@ -13,17 +14,24 @@ function Playlist({ currentIndex, songsList, dispatch }) {
             {songsList && (
                 songsList.map((song, index) =>
                     (
-                        <div 
-                            className={`playlist-row ${index === currentIndex ? 'current' : ''}`} 
+                        <div
+                            className={`playlist-row ${index === currentIndex ? 'current' : ''}`}
                             key={song.url}
                             data-testid={`${index === currentIndex ? 'current-row' : 'playlist-row'}`}
                         >
-                            
+
                             <div className="playlist-item">
                                 {song.url}
                             </div>
-                            <div className="playlist-button">
-                                <button onClick={() => dispatch(removeSong(song.id)) }>Remove</button>
+                            <div
+                                className="playlist-button"
+                            >
+                                <button
+                                    data-testid={`btn-remove-${index}`}
+                                    onClick={() => handleRemoveSong(song.id)}
+                                >
+                                    Remove
+                                </button>
                             </div>
                         </div>
                     ))

@@ -15,3 +15,16 @@ firebase.initializeApp(firebaseConfig);
 // Get a reference to the database service
 export const database = firebase.database();
 export const songsRef = database.ref('/songs');
+
+export const handleAddSong = ({url, id}) => {
+    const newSong = {
+        id,
+        url
+    };
+    songsRef.child(id).set(newSong);
+};
+
+export const handleRemoveSong = (songId) => {
+    const itemRef = database.ref(`/songs/${songId}`);
+    itemRef.remove();
+}

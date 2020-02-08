@@ -18,12 +18,16 @@ beforeAll(() => {
     });
 })
 
-test('creates FETCH_SONGS when fetching songs has been done', () => {
+afterAll(() => {
+    jest.clearAllMocks();
+});
+
+test('fetchSongs action', () => {
     const expectedActions = [
         { type: types.FETCH_SONGS, payload: data }
     ];
     const store = mockStore({ songs: [] })
     return store.dispatch(actions.fetchSongs()).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
-    })
+    });
 })

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
-import { removeSong } from '../actions';
+import { handleRemoveSong } from '../services/firebase';
 
-function Player({ currentIndex, songs, dispatch }) {
+function Player({ currentIndex, songs }) {
   const [song, setSongItem] = useState(null);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function Player({ currentIndex, songs, dispatch }) {
       controls
       playing
       onEnded={() => {       
-        dispatch(removeSong(song.id))        
+        handleRemoveSong(song.id)       
       }}
     />
   );
